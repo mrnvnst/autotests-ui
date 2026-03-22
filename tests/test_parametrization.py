@@ -11,11 +11,23 @@ users = {
 
 @pytest.mark.parametrize(
     "phone_number",
-    users.keys(),  # Передаем список номеров телефонов
+    users.keys(),  # Передаем список номеров телефонов (тесты запускаются по ключам, т.е. номерам)
     ids=lambda phone_number: f"{phone_number}: {users[phone_number]}"
 )
 def test_identifiers(phone_number: str):
     pass
+
+
+'''
+Параметризацию для test_identifiers() привычнее представлять в виде:
+
+@pytest.mark.parametrize(
+    "phone_number, description",
+    users.items(),
+)
+def test_identifiers(phone_number, description):
+    pass 
+'''
 
 
 @pytest.mark.parametrize("user", ["Alice", "Zara"])
