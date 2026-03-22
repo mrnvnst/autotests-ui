@@ -1,4 +1,4 @@
-import pytest  # Импортируем pytest
+import pytest
 from playwright.sync_api import Page, Playwright, expect
 
 
