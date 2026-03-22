@@ -1,4 +1,16 @@
 import pytest
+from _pytest.fixtures import SubRequest
+
+
+@pytest.fixture(params=["chromium", "webkit", "firefox"])
+# Фикстура будет возвращать три разных браузера – также и автотесты будут запускаться трижды
+def browser(request: SubRequest) -> str:
+    return request.param  # Внутри атрибута param находится одно из значений "chromium", "webkit", "firefox"
+
+
+def test_open_browser(browser: str):
+    # Используем фикстуру, котоаря вернет браузер в виде строки
+    print(f"Running test on browser: {browser}")
 
 
 @pytest.mark.parametrize("number", [1, 2, 3, -1])
