@@ -2,6 +2,17 @@ import pytest
 from _pytest.fixtures import SubRequest
 
 
+@pytest.mark.parametrize("user", ["Alice", "Zara"])
+class TestOperations:
+    # Параметр user передается в качестве аргумента в каждый тестовый метод класса
+    @pytest.mark.parametrize("account", ["Credit card", "Debit card"])
+    def test_user_with_operations(self, user: str, account: str):
+        print(f"User with operations: {user}")
+
+    def test_user_without_operations(self, user: str):
+        print(f"User without operations: {user}")
+
+
 @pytest.fixture(params=["chromium", "webkit", "firefox"])
 # Фикстура будет возвращать три разных браузера – также и автотесты будут запускаться трижды
 def browser(request: SubRequest) -> str:
