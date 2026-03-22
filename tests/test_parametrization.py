@@ -2,6 +2,22 @@ import pytest
 from _pytest.fixtures import SubRequest
 
 
+users = {
+    "+70000000011":  "User with money on bank account",
+    "+70000000022": "User without money on bank account",
+    "+70000000033": "User without operations on bank account"
+}
+
+
+@pytest.mark.parametrize(
+    "phone_number",
+    users.keys(),  # Передаем список номеров телефонов
+    ids=lambda phone_number: f"{phone_number}: {users[phone_number]}"
+)
+def test_identifiers(phone_number: str):
+    pass
+
+
 @pytest.mark.parametrize("user", ["Alice", "Zara"])
 class TestOperations:
     # Параметр user передается в качестве аргумента в каждый тестовый метод класса
