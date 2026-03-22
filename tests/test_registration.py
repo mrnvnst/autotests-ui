@@ -1,8 +1,6 @@
 import pytest
 from playwright.sync_api import expect, Page
 
-from tests.conftest import chromium_page
-
 
 @pytest.mark.regression
 @pytest.mark.registration
@@ -26,12 +24,3 @@ def test_successful_registration(chromium_page: Page):
     dashboard_title = chromium_page.get_by_test_id('dashboard-toolbar-title-text')
     expect(dashboard_title).to_be_visible()
 
-    # context.storage_state(path='browser-state.json')
-
-
-# with sync_playwright() as playwright:
-#     browser = playwright.chromium.launch(headless=False)
-#     context = browser.new_context(storage_state='browser-state.json')
-#     page = context.new_page()
-#
-#     page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard')
