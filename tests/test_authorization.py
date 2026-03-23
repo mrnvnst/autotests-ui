@@ -14,9 +14,7 @@ login_data = {
 @pytest.mark.authorization
 @pytest.mark.parametrize("email, password", login_data.keys(), ids=login_data.values())
 # Использование фикстуры 'chromium_page', которая автоматически предоставляет готовую страницу
-def test_wrong_email_or_password_authorization(chromium_page: Page, email: str, password: str):
-    # Инициализируем класс LoginPage
-    login_page = LoginPage(page=chromium_page)
+def test_wrong_email_or_password_authorization(login_page: LoginPage, email: str, password: str):
     # Открываем страницу с помощью метода visit, наследуемого от BasePage
     login_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
     # Заполняем форму
